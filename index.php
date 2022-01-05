@@ -9,53 +9,55 @@
 	</head>
 
 	<body>
-		<div class="row justify-content-center">
-			<div class="col-10 col-md-6 col-lg-4">
-				<?php
-				if (isset($_GET['url'])) {?>
-					<div class="card mx-auto mt-4">
-						<div class="card-img-top" id="qrcode"></div>
-						<div class="card-body">
-							<div class="d-grid gap-2">
-							  	<a id="download" class="btn btn-primary" type="button" target="_blank">Télécharger</a>
-							</div>
-						</div>
-					</div>
-				<?php }else{ ?>
-					<div class="card mx-auto mt-4">
-						<div class="card-body">
-							<div class="d-grid gap-2">
-								<h5>Générateur de QR Code</h5>
-								<form action="" method="get">
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Votre URL" name="url">
-										<button type="submit" class="btn btn-outline-secondary">Générer</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="card mx-auto mt-4">
-						<div class="card-body">
-							<div class="d-grid gap-2">
-								<b> Mettre en favoris </b>
-							  	<div class="input-group">
-								  <input type="text" class="form-control" value='javascript:void(location.href="http://qr.riparia-studio.com/?url="+encodeURIComponent(location.href));' readonly>
-								  <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText('javascript:void(location.href=\'http://qr.riparia-studio.com/?url=\'+encodeURIComponent(location.href));');alert('Le lien a été copié !')">Copier</button>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-10 col-md-6 col-lg-4">
+					<?php
+					if (isset($_GET['url'])) {?>
+						<div class="card mx-auto mt-4">
+							<div class="card-img-top" id="qrcode"></div>
+							<div class="card-body">
+								<div class="d-grid gap-2">
+								  	<a id="download" class="btn btn-primary" type="button" target="_blank">Télécharger</a>
 								</div>
-								<p> À droite de la barre d'adresse, appuyez sur Menu&nbsp;<img src="//lh3.googleusercontent.com/oLoRPrHJd7m46sWijX6zBWnEnfslP62AxJSwt5Nj0bNbpaYHz2pyscExleiofsH2kQ=w36-h36" width="18" height="18" alt="Plus" title="Plus" data-mime-type="image/png" data-alt-src="//lh3.googleusercontent.com/oLoRPrHJd7m46sWijX6zBWnEnfslP62AxJSwt5Nj0bNbpaYHz2pyscExleiofsH2kQ">&nbsp;<img src="//lh3.googleusercontent.com/3_l97rr0GvhSP2XV5OoCkV2ZDTIisAOczrSdzNCBxhIKWrjXjHucxNwocghoUa39gw=w36-h36" width="18" height="18" alt="puis" title="puis" data-mime-type="image/png" data-alt-src="//lh3.googleusercontent.com/3_l97rr0GvhSP2XV5OoCkV2ZDTIisAOczrSdzNCBxhIKWrjXjHucxNwocghoUa39gw"> Ajouter cet onglet aux favoris&nbsp;<img src="//lh3.googleusercontent.com/sy4TrACPnJ7D6yByRl1M2xVliQ5nn2DFD9cVPA3w9iPH1WC8pKbtgDZLPbO-mpNDEBg=w36-h36" width="18" height="18" alt="Étoile" title="Étoile" data-mime-type="image/png" data-alt-src="//lh3.googleusercontent.com/sy4TrACPnJ7D6yByRl1M2xVliQ5nn2DFD9cVPA3w9iPH1WC8pKbtgDZLPbO-mpNDEBg">.
-								</p>
-								<a href="javascript:void(location.href=%22http://qr.riparia-studio.com/?url=%22+encodeURIComponent(location.href));" class="btn btn-primary color-white"><i class="fa fa-link" aria-hidden="true"></i> Générer un QR code</a>
-								<p class="mb-0">
-									Sur Ordinateur, faites glisser ce bouton sur la barre d'outils de votre navigateur. Un simple clic lors de la visite d'un site vous permettra de générer son QR code.
-								</p>
 							</div>
 						</div>
-					</div>
-					<div class="mt-3 mx-3" style="text-align: justify;">
-						<small>Compatible avec la plupart des navigateurs tant que vos favoris permettent le JavaScript. La barre d'outils des liens peut ne pas être visible dans la plupart des navigateurs, vous pouvez l'activer dans le menu <i>Favoris</i> → <i>Afficher la barre de favoris</i>. Ou en appuyant sur Ctrl + Maj + B .</small>
-					</div>
-				<?php } ?>
+					<?php }else{ ?>
+						<div class="card mx-auto mt-4">
+							<div class="card-body">
+								<div class="d-grid gap-2">
+									<h5>Générateur de QR Code</h5>
+									<form action="" method="get">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="Votre URL" name="url">
+											<button type="submit" class="btn btn-outline-secondary">Générer</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="card mx-auto mt-4">
+							<div class="card-body">
+								<div class="d-grid gap-2">
+									<b> Mettre en favoris </b>
+								  	<div class="input-group">
+									  <input type="text" class="form-control" value='javascript:void(location.href="http://qr.riparia-studio.com/?url="+encodeURIComponent(location.href));' readonly>
+									  <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText('javascript:void(location.href=\'http://qr.riparia-studio.com/?url=\'+encodeURIComponent(location.href));');alert('Le lien a été copié !')">Copier</button>
+									</div>
+									<p> À droite de la barre d'adresse, appuyez sur Menu&nbsp;<img src="//lh3.googleusercontent.com/oLoRPrHJd7m46sWijX6zBWnEnfslP62AxJSwt5Nj0bNbpaYHz2pyscExleiofsH2kQ=w36-h36" width="18" height="18" alt="Plus" title="Plus" data-mime-type="image/png" data-alt-src="//lh3.googleusercontent.com/oLoRPrHJd7m46sWijX6zBWnEnfslP62AxJSwt5Nj0bNbpaYHz2pyscExleiofsH2kQ">&nbsp;<img src="//lh3.googleusercontent.com/3_l97rr0GvhSP2XV5OoCkV2ZDTIisAOczrSdzNCBxhIKWrjXjHucxNwocghoUa39gw=w36-h36" width="18" height="18" alt="puis" title="puis" data-mime-type="image/png" data-alt-src="//lh3.googleusercontent.com/3_l97rr0GvhSP2XV5OoCkV2ZDTIisAOczrSdzNCBxhIKWrjXjHucxNwocghoUa39gw"> Ajouter cet onglet aux favoris&nbsp;<img src="//lh3.googleusercontent.com/sy4TrACPnJ7D6yByRl1M2xVliQ5nn2DFD9cVPA3w9iPH1WC8pKbtgDZLPbO-mpNDEBg=w36-h36" width="18" height="18" alt="Étoile" title="Étoile" data-mime-type="image/png" data-alt-src="//lh3.googleusercontent.com/sy4TrACPnJ7D6yByRl1M2xVliQ5nn2DFD9cVPA3w9iPH1WC8pKbtgDZLPbO-mpNDEBg">.
+									</p>
+									<a href="javascript:void(location.href=%22http://qr.riparia-studio.com/?url=%22+encodeURIComponent(location.href));" class="btn btn-primary color-white"><i class="fa fa-link" aria-hidden="true"></i> Générer un QR code</a>
+									<p class="mb-0">
+										Sur Ordinateur, faites glisser ce bouton sur la barre d'outils de votre navigateur. Un simple clic lors de la visite d'un site vous permettra de générer son QR code.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="mt-3 mx-3" style="text-align: justify;">
+							<small>Compatible avec la plupart des navigateurs tant que vos favoris permettent le JavaScript. La barre d'outils des liens peut ne pas être visible dans la plupart des navigateurs, vous pouvez l'activer dans le menu <i>Favoris</i> → <i>Afficher la barre de favoris</i>. Ou en appuyant sur Ctrl + Maj + B .</small>
+						</div>
+					<?php } ?>
+				</div>
 			</div>
 		</div>
 
@@ -115,11 +117,11 @@
 			var canvas = document.getElementById('qrcode').children[0];
 
 			// Add Class to canvas
-		    canvas.classList.add("position-relative","start-50","translate-middle-x");
+			canvas.classList.add("position-relative","start-50","translate-middle-x");
 
-		    // Link download button
-		    document.getElementById('download').setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"))
-		    document.getElementById('download').setAttribute('download', 'QR_' + name + '.png');
+			// Link download button
+			document.getElementById('download').setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"))
+			document.getElementById('download').setAttribute('download', 'QR_' + name + '.png');
 		</script>
 		<?php } ?>
 

@@ -88,7 +88,7 @@
 						$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 						if($httpCode != 404) { ?>
 							// === Logo
-							logo: "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=" + url + "&size=128", // LOGO
+							logo: "data:image/png;base64,<?=base64_encode(file_get_contents("https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=".$_GET['url']."&size=128"));?>", // LOGO
 							logoWidth:80, 
 							logoHeight:80,
 							logoBackgroundColor: '#ffffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
@@ -99,6 +99,7 @@
 						curl_close($handle);
 						?>
 
+						//crossOrigin: 'anonymous', // Add this if you have CORS "Access-Control-Allow-Origin" problems
 						correctLevel: QRCode.CorrectLevel.H // L, M, Q, H
 
 			};
@@ -114,14 +115,17 @@
 			}
 
 			// Get QRcode
-			var canvas = document.getElementById('qrcode').children[0];
+			const canvas = document.getElementById('qrcode').children[0];
 
 			// Add Class to canvas
 			canvas.classList.add("position-relative","start-50","translate-middle-x");
 
-			// Link download button
-			document.getElementById('download').setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"))
-			document.getElementById('download').setAttribute('download', 'QR_' + name + '.png');
+			// You need a onclick event to take the last canvas generated with the inner logo
+			document.getElementById('download').onclick = function(){
+				// Link download button
+				document.getElementById('download').setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"))
+				document.getElementById('download').setAttribute('download', 'QR_' + name + '.png');
+			}
 		</script>
 		<?php } ?>
 

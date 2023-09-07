@@ -4,6 +4,10 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 		<title>Générer un QR code</title>
+		<meta name="description" content="Générateur de QR code en ligne.">
+		<meta name="author" content="Riparia Studio">
+		<meta name="robots" content="index, follow">
+		<meta name="googlebot" content="index, follow">
 		<script src="./dist/easy.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	</head>
@@ -13,7 +17,7 @@
 			<div class="row justify-content-center">
 				<div class="col-10 col-md-6 col-lg-4">
 					<?php
-					if (isset($_GET['url'])) {?>
+					if (isset($_GET['url']) && $_GET['url'] != '') { ?>
 						<div class="card mx-auto mt-4">
 							<div class="card-img-top" id="qrcode"></div>
 							<div class="card-body">
@@ -31,6 +35,11 @@
 										<div class="input-group">
 											<input type="text" class="form-control" placeholder="Votre URL" name="url">
 											<button type="submit" class="btn btn-outline-secondary">Générer</button>
+										</div>
+										<!-- the logo switch -->
+										<div class="form-check form-switch mt-2">
+											<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="logo" value="true" checked>
+											<label class="form-check-label" for="flexSwitchCheckDefault">Ajouter le logo</label>
 										</div>
 									</form>
 								</div>
@@ -61,7 +70,7 @@
 			</div>
 		</div>
 
-		<?php if (isset($_GET['url'])) { ?>
+		<?php if (isset($_GET['url']) && $_GET['url'] != '') { ?>
 		<script type="text/javascript">
 			// Url PHP to JS
 			var url = "<?=$_GET['url'];?>";
@@ -69,38 +78,42 @@
 			// QRcode option
 			var config = {
 
-						text: url, // Content
+				text: url, // Content
 
-						width: 240, // Widht
-						height: 240, // Height
-						quietZone: 0,
-						colorDark: "#000000", // Dark color
-						colorLight: "#ffffff", // Light color
+				width: 240, // Widht
+				height: 240, // Height
+				quietZone: 0,
+				colorDark: "#000000", // Dark color
+				colorLight: "#ffffff", // Light color
 
-						<?php 
-						$handle = curl_init("https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=".$_GET['url']."&size=128");
-						curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
+				<?php 
+				$handle = curl_init("https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=".$_GET['url']."&size=128");
+				curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
 
-						/* Get the HTML or whatever is linked in $url. */
-						$response = curl_exec($handle);
+				/* Get the HTML or whatever is linked in $url. */
+				$response = curl_exec($handle);
 
-						/* Check for 404 (file not found). */
-						$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-						if($httpCode != 404) { ?>
-							// === Logo
-							logo: "data:image/png;base64,<?=base64_encode(file_get_contents("https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=".$_GET['url']."&size=128"));?>", // LOGO
-							logoWidth:80, 
-							logoHeight:80,
-							logoBackgroundColor: '#ffffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
-							logoBackgroundTransparent: false, // Whether use transparent image, default is false
-						<?php  
-						}
+				/* Check for 404 (file not found). */
+				$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+				if($httpCode != 404) { ?>
+					// === Logo
+					<?php if (isset($_GET['logo']) && $_GET['logo'] == 'true') { ?>
+						logo: "data:image/png;base64,<?=base64_encode(file_get_contents("https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=".$_GET['url']."&size=128"));?>", // LOGO
+						logoWidth:80, 
+						logoHeight:80,
+						logoBackgroundColor: '#ffffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
+						logoBackgroundTransparent: false, // Whether use transparent image, default is false
+					<?php } else { ?>
+						logo: null, // No logo
+					<?php } ?>
+				<?php  
+				}
 
-						curl_close($handle);
-						?>
+				curl_close($handle);
+				?>
 
-						//crossOrigin: 'anonymous', // Add this if you have CORS "Access-Control-Allow-Origin" problems
-						correctLevel: QRCode.CorrectLevel.H // L, M, Q, H
+				//crossOrigin: 'anonymous', // Add this if you have CORS "Access-Control-Allow-Origin" problems
+				correctLevel: QRCode.CorrectLevel.H // L, M, Q, H
 
 			};
 
